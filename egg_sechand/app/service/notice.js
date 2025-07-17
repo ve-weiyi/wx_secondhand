@@ -27,7 +27,7 @@ class NoticeService extends Service {
       ctx,
     } = this;
     try {
-      const Notice = await ctx.model.Notice.findById(id);
+      const Notice = await ctx.model.Notice.findByPk(id);
       if (!Notice) {
         ctx.status = 400;
         return Object.assign(ERROR, {
@@ -77,7 +77,7 @@ class NoticeService extends Service {
       ctx,
     } = this;
     try {
-      const Notice = await ctx.model.Notice.findById(id);
+      const Notice = await ctx.model.Notice.findByPk(id);
       if (!Notice) {
         ctx.status = 400;
         return Object.assign(ERROR, {
@@ -100,7 +100,7 @@ class NoticeService extends Service {
       ctx,
     } = this;
     try {
-      const Notice = await ctx.model.Notice.findById(id);
+      const Notice = await ctx.model.Notice.findByPk(id);
       if (!Notice) {
         ctx.status = 400;
         return Object.assign(ERROR, {

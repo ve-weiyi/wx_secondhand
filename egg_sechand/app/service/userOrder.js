@@ -15,7 +15,7 @@ class UserOrderService extends Service {
 
     try {
       if(!UserOrder.product_id) return ERROR
-      const product = await this.ctx.model.Product.findById(UserOrder.product_id);
+      const product = await this.ctx.model.Product.findByPk(UserOrder.product_id);
       if(product.user_id===Number(userid)){
         return {...ERROR,msg:"您不能购买自己出售的商品！"}
       }
@@ -24,7 +24,7 @@ class UserOrderService extends Service {
       }
 
 
-      const user  =  await this.ctx.model.User.findById(userid)
+      const user  =  await this.ctx.model.User.findByPk(userid)
       let money = user.money-UserOrder.price
       if(money<0){
         return {...ERROR,msg:"余额不足请充值！"}
@@ -287,7 +287,7 @@ class UserOrderService extends Service {
     id,
   }) {
    
-    const UserOrder = await this.ctx.model.UserOrder.findById(id);
+    const UserOrder = await this.ctx.model.UserOrder.findByPk(id);
     if (!UserOrder) {
       return Object.assign(ERROR,{
         msg: 'UserOrder not found',
@@ -310,23 +310,23 @@ class UserOrderService extends Service {
     const userid = ctx.state.user.data.id//当前登录用户即卖家id
     
     
-    const userOrder = await this.ctx.model.UserOrder.findById(id);
+    const userOrder = await this.ctx.model.UserOrder.findByPk(id);
 
     if (!userOrder) {
       return Object.assign(ERROR, {
         msg: 'UserOrder not found',
       });
     }
-    const product = await this.ctx.model.Product.findById(userOrder.product_id);
+    const product = await this.ctx.model.Product.findByPk(userOrder.product_id);
     const orderState = Number(updates.orderState);
     if(orderState===-1){
       product.update({sellState:0})
       //买家取消订单，增加买家钱包余额
-      const user  = await this.ctx.model.User.findById(userid)
+      const user  = await this.ctx.model.User.findByPk(userid)
       user.update({money:user.money+userOrder.price})
     }else if(orderState===3){
       //买家确认收货增加卖家收益
-      const user  = await this.ctx.model.User.findById(product.user_id)
+      const user  = await this.ctx.model.User.findByPk(product.user_id)
       product.update({sellState:updates.orderState})
       user.update({money:user.money+userOrder.price})
     } else {
@@ -338,7 +338,7 @@ class UserOrderService extends Service {
   }
 
   async find(id) {
-    const UserOrder = await this.ctx.model.UserOrder.findById(id,{
+    const UserOrder = await this.ctx.model.UserOrder.findByPk(id,{
       include: [{
         model: this.ctx.model.User,
         as: 'user',
@@ -365,7 +365,7 @@ class UserOrderService extends Service {
   }
 
   async edit(id) {
-    const UserOrder = await this.ctx.model.UserOrder.findById(id);
+    const UserOrder = await this.ctx.model.UserOrder.findByPk(id);
     if (!UserOrder) {
       return Object.assign(ERROR, {
         msg: 'UserOrder not found',

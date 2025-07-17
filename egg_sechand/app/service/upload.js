@@ -20,7 +20,7 @@ class UploadService extends Service {
       const target = path.join(this.config.baseDir, 'app/public/uploads', `${attachment._id}${attachment.extname}`)
       fs.unlinkSync(target)
     }
-    return ctx.model.Attachment.findByIdAndRemove(_id)
+    return ctx.model.Attachment.findByPkAndRemove(_id)
   }
 
   // update======================================================================================================>  
@@ -42,11 +42,11 @@ class UploadService extends Service {
     if (!attachment) {
       ctx.throw(404, 'attachment not found')
     }
-    return this.ctx.model.Attachment.findByIdAndUpdate(_id, values)
+    return this.ctx.model.Attachment.findByPkAndUpdate(_id, values)
   }
 
   async update(_id, values) {
-    return this.ctx.model.Attachment.findByIdAndUpdate(_id, values)
+    return this.ctx.model.Attachment.findByPkAndUpdate(_id, values)
   }
 
   // show======================================================================================================>
@@ -55,7 +55,7 @@ class UploadService extends Service {
     if (!attachment) {
       this.ctx.throw(404, 'attachment not found')
     }
-    return this.ctx.model.Attachment.findById(_id)
+    return this.ctx.model.Attachment.findByPk(_id)
   }
 
   // index======================================================================================================>
@@ -125,7 +125,7 @@ class UploadService extends Service {
 
   // Commons======================================================================================================>
   async find(id) {
-    return this.ctx.model.Attachment.findById(id)
+    return this.ctx.model.Attachment.findByPk(id)
   }
 }
 

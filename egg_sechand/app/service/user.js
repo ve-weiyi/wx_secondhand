@@ -50,7 +50,7 @@ class UserService extends Service {
       ctx,
     } = this;
     try {
-      const user = await ctx.model.User.findById(id);
+      const user = await ctx.model.User.findByPk(id);
       if (!user) {
         ctx.status = 400;
         return Object.assign(ERROR, {
@@ -74,7 +74,7 @@ class UserService extends Service {
       ctx,
     } = this;
     try {
-      const userDB = await ctx.model.User.findById(id);
+      const userDB = await ctx.model.User.findByPk(id);
       if (!userDB) {
         ctx.status = 400;
         return Object.assign(ERROR, {
@@ -104,7 +104,7 @@ class UserService extends Service {
     } = this;
     const id = ctx.state.user.data.id
     try {
-      const userDB = await ctx.model.User.findById(id);
+      const userDB = await ctx.model.User.findByPk(id);
       if (!userDB) {
         ctx.status = 400;
         return Object.assign(ERROR, {
@@ -136,7 +136,7 @@ class UserService extends Service {
     } = this;
     const id = ctx.state.user.data.id
     try {
-      const userDB = await ctx.model.User.findById(id);
+      const userDB = await ctx.model.User.findByPk(id);
       if (!userDB) {
         ctx.status = 400;
         return Object.assign(ERROR, {
@@ -341,7 +341,7 @@ class UserService extends Service {
       ctx,
     } = this;
     try {
-      let user = await ctx.model.User.findById(id, {
+      let user = await ctx.model.User.findByPk(id, {
         include: [{
           model: ctx.model.Authority,
           attributes: ['id', 'name'],
@@ -374,7 +374,7 @@ class UserService extends Service {
     const id = ctx.state.user.data.id
 
     try {
-      const userInfo = await ctx.model.User.findById(id, {
+      const userInfo = await ctx.model.User.findByPk(id, {
         include: [{
           model: ctx.model.Authority,
           attributes: ['id', 'name'],
@@ -406,7 +406,7 @@ class UserService extends Service {
 
 
     try {
-      const userDB = await ctx.model.User.findById(id);
+      const userDB = await ctx.model.User.findByPk(id);
       if (!userDB) {
         ctx.status = 400;
         return Object.assign(ERROR, {

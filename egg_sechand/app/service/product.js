@@ -140,7 +140,7 @@ class ProductService extends Service {
     id,
   }) {
     
-    const Product = await this.ctx.model.Product.findById(id);
+    const Product = await this.ctx.model.Product.findByPk(id);
     if (!Product) {
       return Object.assign({
         error_msg: 'Product not found',
@@ -156,7 +156,7 @@ class ProductService extends Service {
     updates,
   }) {
     
-    const Product = await this.ctx.model.Product.findById(id);
+    const Product = await this.ctx.model.Product.findByPk(id);
     if (!Product) {
       return Object.assign(ERROR, {
         msg: 'Product not found',
@@ -174,7 +174,7 @@ class ProductService extends Service {
     console.log("ctx.state.user",ctx.state)
     const user = ctx.state.user
 
-    const Product = await this.ctx.model.Product.findById(id, {
+    const Product = await this.ctx.model.Product.findByPk(id, {
       include:[{
         model: ctx.model.User,
         as:"user",
@@ -234,7 +234,7 @@ class ProductService extends Service {
       ctx,
     } = this;
 
-    const Product = await this.ctx.model.Product.findById(id, {
+    const Product = await this.ctx.model.Product.findByPk(id, {
       include:[{
         model: ctx.model.User,
         as:"user",
@@ -274,7 +274,7 @@ class ProductService extends Service {
   }
 
   async edit(id) {
-    const Product = await this.ctx.model.Product.findById(id);
+    const Product = await this.ctx.model.Product.findByPk(id);
     if (!Product) {
       return Object.assign(ERROR, {
         msg: 'Product not found',

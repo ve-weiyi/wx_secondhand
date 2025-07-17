@@ -129,7 +129,7 @@ class TopicService extends Service {
         msg:"未登录"
       }
     }
-    const Topic = await this.ctx.model.Topic.findById(id);
+    const Topic = await this.ctx.model.Topic.findByPk(id);
     if (!Topic) {
       return Object.assign({
         error_msg: 'Topic not found',
@@ -152,7 +152,7 @@ class TopicService extends Service {
         msg:"未登录"
       }
     }
-    const Topic = await this.ctx.model.Topic.findById(id);
+    const Topic = await this.ctx.model.Topic.findByPk(id);
     if (!Topic) {
       return Object.assign(ERROR, {
         msg: 'Topic not found',
@@ -164,7 +164,7 @@ class TopicService extends Service {
   }
 
   async find(id) {
-    const Topic = await this.ctx.model.Topic.findById(id, {
+    const Topic = await this.ctx.model.Topic.findByPk(id, {
       include: [{
         model: this.ctx.model.User,
         as: 'user',
@@ -199,7 +199,7 @@ class TopicService extends Service {
   }
 
   async edit(id) {
-    const Topic = await this.ctx.model.Topic.findById(id, {
+    const Topic = await this.ctx.model.Topic.findByPk(id, {
       include: [{
         model: this.ctx.model.User,
         as: 'user',

@@ -112,7 +112,7 @@ class AddressService extends Service {
       ctx,
     } = this;
     try {
-      const Address = await ctx.model.Address.findById(id);
+      const Address = await ctx.model.Address.findByPk(id);
       if (!Address) {
         return Object.assign(ERROR, {
           msg: 'Address not found',
@@ -134,7 +134,7 @@ class AddressService extends Service {
       ctx,
     } = this;
     try {
-      const Address = await ctx.model.Address.findById(id,{
+      const Address = await ctx.model.Address.findByPk(id,{
         include: [{
           model: this.ctx.model.User,
           as: 'user',
@@ -168,7 +168,7 @@ class AddressService extends Service {
       ctx,
     } = this;
     try {
-      const Address = await ctx.model.Address.findById(id);
+      const Address = await ctx.model.Address.findByPk(id);
       if (!Address) {
         return Object.assign(ERROR, {
           msg: 'Address not found',

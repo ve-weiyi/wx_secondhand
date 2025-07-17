@@ -156,7 +156,7 @@ class CollectService extends Service {
       ctx,
     } = this;
     try {
-      const collect = await ctx.model.Collect.findById(id);
+      const collect = await ctx.model.Collect.findByPk(id);
       if (!collect) {
         return Object.assign(ERROR, {
           msg: 'collect not found',
@@ -178,7 +178,7 @@ class CollectService extends Service {
       ctx,
     } = this;
     try {
-      const collect = await ctx.model.Collect.findById(id,{
+      const collect = await ctx.model.Collect.findByPk(id,{
         include: [{
           model: this.ctx.model.User,
           as: 'user',
@@ -215,7 +215,7 @@ class CollectService extends Service {
       ctx,
     } = this;
     try {
-      const collect = await ctx.model.Collect.findById(id);
+      const collect = await ctx.model.Collect.findByPk(id);
       if (!collect) {
         return Object.assign(ERROR, {
           msg: 'collect not found',

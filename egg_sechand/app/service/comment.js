@@ -26,7 +26,7 @@ class CommentService extends Service {
         });
       }
     
-      const product = await ctx.model.Product.findById(product_id);
+      const product = await ctx.model.Product.findByPk(product_id);
       if(!product){
         return {...ERROR,msg:"未找到要评论的商品"}
       }
@@ -69,7 +69,7 @@ class CommentService extends Service {
         });
       }
     
-      const comment = await ctx.model.Comment.findById(comment_id);
+      const comment = await ctx.model.Comment.findByPk(comment_id);
       if(!comment){
         return {...ERROR,msg:"未找到评论"}
       }
@@ -100,8 +100,8 @@ class CommentService extends Service {
     } = this;
 
     try {
-      const comment = await ctx.model.Comment.findById(id);
-      // const user = await ctx.model.User.findById(user_id);
+      const comment = await ctx.model.Comment.findByPk(id);
+      // const user = await ctx.model.User.findByPk(user_id);
       if (!comment) {
         ctx.status = 400;
         return Object.assign(ERROR, {
